@@ -1,0 +1,60 @@
+body { font-family: Arial, Helvetica, sans-serif; }
+
+        svg.icon {
+  width: 1em;
+  height: 1em;
+  vertical-align: middle;
+    fill: #3476a0;
+  cursor: pointer;
+}
+summary {
+  padding: 1em;
+  font-weight: bold;
+  list-style: none;
+  display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+summary:hover, summary:focus {
+  background: #edf3f4;
+}
+details {
+   border-bottom: #ccc 1px solid;
+
+}
+
+
+details[disabled] svg
+ {
+    opacity: 0.3;
+}
+
+img { margin: auto;
+  max-width: 100%;
+}
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1em;
+}
+
+@media screen and (min-width: 530px) {
+  .panel {
+  display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 1em;
+    align-items: center;
+
+    p {max-width: 80%;}
+  }
+    
+}
+
+        @media screen and (min-width: 1280px) {
+              .accordion { width: 80%; margin: 0 auto; }
+    
+  
+        }

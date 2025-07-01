@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Frogs life cycle</title>
+        <link rel="stylesheet" href="css/style.css" />
+        <meta name="description" content="" />
+
+        <meta property="og:title" content="" />
+        <meta property="og:type" content="" />
+        <meta property="og:url" content="" />
+        <meta property="og:image" content="" />
+        <meta property="og:image:alt" content="" />
+
+        <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+        <meta name="theme-color" content="#fafafa" />
+    </head>
+
+    <body>
+        <svg aria-hidden="true" style="position: absolute; width: 0; height: 0; overflow: hidden;" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<defs>
+<symbol id="icon-lock" viewBox="0 0 32 32">
+<path d="M18.5 14h-0.5v-6c0-3.308-2.692-6-6-6h-4c-3.308 0-6 2.692-6 6v6h-0.5c-0.825 0-1.5 0.675-1.5 1.5v15c0 0.825 0.675 1.5 1.5 1.5h17c0.825 0 1.5-0.675 1.5-1.5v-15c0-0.825-0.675-1.5-1.5-1.5zM6 8c0-1.103 0.897-2 2-2h4c1.103 0 2 0.897 2 2v6h-8v-6z"></path>
+</symbol>
+<symbol id="icon-circle-up" viewBox="0 0 32 32">
+<path d="M0 16c0 8.837 7.163 16 16 16s16-7.163 16-16-7.163-16-16-16-16 7.163-16 16zM29 16c0 7.18-5.82 13-13 13s-13-5.82-13-13 5.82-13 13-13 13 5.82 13 13z"></path>
+<path d="M22.086 20.914l2.829-2.829-8.914-8.914-8.914 8.914 2.828 2.828 6.086-6.086z"></path>
+</symbol>
+<symbol id="icon-circle-down" viewBox="0 0 32 32">
+<path d="M32 16c0-8.837-7.163-16-16-16s-16 7.163-16 16 7.163 16 16 16 16-7.163 16-16zM3 16c0-7.18 5.82-13 13-13s13 5.82 13 13-5.82 13-13 13-13-5.82-13-13z"></path>
+<path d="M9.914 11.086l-2.829 2.829 8.914 8.914 8.914-8.914-2.828-2.828-6.086 6.086z"></path>
+</symbol>
+</defs>
+</svg>
+ <script type="module">
+
+        let sections = {
+  "sections": [
+    {
+      "title": {
+        "value": "Step 1: Eggs"
+      },
+      "panel": {
+        "value": "Frogs begin life as fertilized eggs. Female frogs lay thousands of eggs at one time in a pond. The eggs float on water in a jelly mass or cluster. Soon, the eggs will hatch into tadpoles!",
+        "image": {
+          "src": "Frog Lifecycle Step 1.jpg",
+          "title": "frog eggs in various stages of development, starting with an olive-colored ball and ending with a visible tail"
+        }
+      }
+    },
+    {
+      "title": {
+        "value": "Step 2: Tadpoles",
+      },
+      "panel": {
+        "value": "When a tadpole hatches, it looks more like a fish than a frog. A tadpole doesn\u0026rsquo;t have any legs. It has gills that allow it to breathe underwater. A tadpole swims, eats and grows for several weeks. Nutrients are stored in the tadpole\u0027s tail, as hind legs begin to grow.",
+        "image": {
+          "src": "Frog Lifecycle Step 2.jpg",
+          "title": "tadpoles in various stages of development, ending with an organism with a small frog head with eyes and newly-formed back legs"
+        }
+      }
+    },
+    {
+      "title": {
+        "value": "Step 3: Froglet",
+      },
+      "panel": {
+        "value": "As a tadpole grows two front legs, its long tail becomes shorter. The tadpole uses stored nutrients as food, so until its tail is completely gone, it doesn\u0026rsquo;t need anything else to eat! When just a little stub of its tail is left, the tadpole has now become a young frog. It can hop right out of the water and onto dry land for the first time.",
+        "image": {
+          "src": "Frog Lifecycle Step 3.jpg",
+          "title": "3 phases of the froglet\u0027s development"
+        }
+      }
+    },
+    {
+      "title": {
+        "value": "Step 4: Adult Frog",
+      },
+      "panel": {
+        "value": "The frog\u0026rsquo;s tail eventually disappears and the frog will begin eating insects instead of plants from the water. A young frog continues to grow for about 2-4 years until it becomes an adult. Adult frogs then lay their own eggs and more tadpoles hatch and begin the cycle again!",
+        "image": {
+          "src": "Frog Lifecycle Step 4.jpg",
+          "title": "two adult frogs: the left frog is younger and smaller, the right frog is a full-grown adult"
+        }
+      }
+    }
+  ]
+};
+
+class FrogAccordion extends HTMLElement {
+    connectedCallback() {
+        this.render(sections.sections);
+        this.addToggleListeners();
+    }
+
+  render(sections) {
+    this.innerHTML = `
+      <div class="accordion">
+        ${sections.map((section, idx) => `
+        <details ${idx <= 1 ? '' : 'disabled'} ${idx === 0 ? 'open' : ''}>
+            <summary id="accordion${idx + 1}">
+                ${section.title.value}
+                <svg class="icon ${idx <= 1 ? 'icon-circle-down' : 'icon-lock'}"><use xlink:href="#${idx <= 1 ? 'icon-circle-down' : 'icon-lock'}"></use></svg>
+                </summary>
+            <div class="panel">
+              <p>${section.panel.value}</p>
+              <img 
+                src="images/${section.panel.image.src}" 
+                alt="${section.panel.image.title}" 
+                title="${section.panel.image.title}" 
+              />
+            </div>
+          </details>
+        `).join('')}
+      </div>
+    `;
+  }
+
+addToggleListeners() {
+  const detailsList = this.querySelectorAll('details');
+  detailsList.forEach((details, idx) => {
+    details.querySelector('summary').addEventListener('click', function (e) {
+      if (details.hasAttribute('disabled')) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+    });
+
+    details.addEventListener('toggle', function () {
+      const svg = details.querySelector('summary svg');
+      const use = svg.querySelector('use');
+      if (svg && use) {
+        if (details.open) {
+          svg.classList.remove('icon-circle-down');
+          svg.classList.add('icon-circle-up');
+          use.setAttribute('xlink:href', '#icon-circle-up');
+        } else {
+          svg.classList.remove('icon-circle-up');
+          svg.classList.add('icon-circle-down');
+          use.setAttribute('xlink:href', '#icon-circle-down');
+        }
+      }
+      // Enable next sibling details if this one is opened
+      if (details.open) {
+        const next = details.nextElementSibling;
+        if (next && next.tagName.toLowerCase() === 'details' && next.hasAttribute('disabled')) {
+          next.removeAttribute('disabled');
+
+          const nextSvg = next.querySelector('summary svg');
+          const nextUse = nextSvg ? nextSvg.querySelector('use') : null;
+          if (nextSvg && nextUse) {
+            nextSvg.classList.remove('icon-circle-lock');
+            nextSvg.classList.add('icon-circle-down');
+            nextUse.setAttribute('xlink:href', '#icon-circle-down');
+          }
+        }
+      }
+    });
+  });
+}
+
+}
+
+customElements.define('frog-accordion', FrogAccordion);
+        </script>
+<frog-accordion></frog-accordion>
+    </body>
+</html>
