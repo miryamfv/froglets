@@ -5,9 +5,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>Frogs life cycle</title>
         <link rel="stylesheet" href="css/style.css" />
-        <meta name="description" content="" />
+        <meta name="description" content="This is Miryam Flores Test" />
 
-        <meta property="og:title" content="" />
+        <meta property="og:title" content="Miryam Flores Frog Accordion" />
         <meta property="og:type" content="" />
         <meta property="og:url" content="" />
         <meta property="og:image" content="" />
@@ -20,21 +20,6 @@
     </head>
 
     <body>
-        <svg aria-hidden="true" style="position: absolute; width: 0; height: 0; overflow: hidden;" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<defs>
-<symbol id="icon-lock" viewBox="0 0 32 32">
-<path d="M18.5 14h-0.5v-6c0-3.308-2.692-6-6-6h-4c-3.308 0-6 2.692-6 6v6h-0.5c-0.825 0-1.5 0.675-1.5 1.5v15c0 0.825 0.675 1.5 1.5 1.5h17c0.825 0 1.5-0.675 1.5-1.5v-15c0-0.825-0.675-1.5-1.5-1.5zM6 8c0-1.103 0.897-2 2-2h4c1.103 0 2 0.897 2 2v6h-8v-6z"></path>
-</symbol>
-<symbol id="icon-circle-up" viewBox="0 0 32 32">
-<path d="M0 16c0 8.837 7.163 16 16 16s16-7.163 16-16-7.163-16-16-16-16 7.163-16 16zM29 16c0 7.18-5.82 13-13 13s-13-5.82-13-13 5.82-13 13-13 13 5.82 13 13z"></path>
-<path d="M22.086 20.914l2.829-2.829-8.914-8.914-8.914 8.914 2.828 2.828 6.086-6.086z"></path>
-</symbol>
-<symbol id="icon-circle-down" viewBox="0 0 32 32">
-<path d="M32 16c0-8.837-7.163-16-16-16s-16 7.163-16 16 7.163 16 16 16 16-7.163 16-16zM3 16c0-7.18 5.82-13 13-13s13 5.82 13 13-5.82 13-13 13-13-5.82-13-13z"></path>
-<path d="M9.914 11.086l-2.829 2.829 8.914 8.914 8.914-8.914-2.828-2.828-6.086 6.086z"></path>
-</symbol>
-</defs>
-</svg>
  <script type="module">
 
         let sections = {
@@ -101,9 +86,8 @@ class FrogAccordion extends HTMLElement {
       <div class="accordion">
         ${sections.map((section, idx) => `
         <details ${idx <= 1 ? '' : 'disabled'} ${idx === 0 ? 'open' : ''}>
-            <summary id="accordion${idx + 1}">
+            <summary id="accordion${idx + 1}" class="${idx <= 1 ? 'icon-circle-down' : ''}">
                 ${section.title.value}
-                <svg class="icon ${idx <= 1 ? 'icon-circle-down' : 'icon-lock'}"><use xlink:href="#${idx <= 1 ? 'icon-circle-down' : 'icon-lock'}"></use></svg>
                 </summary>
             <div class="panel">
               <p>${section.panel.value}</p>
@@ -130,34 +114,28 @@ addToggleListeners() {
     });
 
     details.addEventListener('toggle', function () {
-      const svg = details.querySelector('summary svg');
-      const use = svg.querySelector('use');
-      if (svg && use) {
+      const svg = details.querySelector('summary');
+      if (svg) {
         if (details.open) {
           svg.classList.remove('icon-circle-down');
-          svg.classList.add('icon-circle-up');
-          use.setAttribute('xlink:href', '#icon-circle-up');
         } else {
-          svg.classList.remove('icon-circle-up');
           svg.classList.add('icon-circle-down');
-          use.setAttribute('xlink:href', '#icon-circle-down');
         }
       }
-      // Enable next sibling details if this one is opened
-      if (details.open) {
-        const next = details.nextElementSibling;
-        if (next && next.tagName.toLowerCase() === 'details' && next.hasAttribute('disabled')) {
-          next.removeAttribute('disabled');
+     // Enable next sibling details if this one is opened
+if (details.open) {
 
-          const nextSvg = next.querySelector('summary svg');
-          const nextUse = nextSvg ? nextSvg.querySelector('use') : null;
-          if (nextSvg && nextUse) {
-            nextSvg.classList.remove('icon-circle-lock');
-            nextSvg.classList.add('icon-circle-down');
-            nextUse.setAttribute('xlink:href', '#icon-circle-down');
-          }
-        }
-      }
+  const next = details.nextElementSibling;
+
+  if (next && next.tagName.toLowerCase() === 'details' && next.hasAttribute('disabled')) {
+    next.removeAttribute('disabled');
+    const nextSummary = next.querySelector('summary');
+    if (nextSummary) {
+      nextSummary.classList.remove('icon-circle-lock');
+      nextSummary.classList.add('icon-circle-down');
+    }
+  }
+}
     });
   });
 }
