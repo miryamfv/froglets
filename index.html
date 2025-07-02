@@ -85,8 +85,8 @@ class FrogAccordion extends HTMLElement {
     this.innerHTML = `
       <div class="accordion">
         ${sections.map((section, idx) => `
-        <details ${idx <= 1 ? '' : 'disabled'} ${idx === 0 ? 'open' : ''}>
-            <summary id="accordion${idx + 1}" class="${idx <= 1 ? 'icon-circle-down' : ''}">
+        <details ${idx < 1 ? '' : 'disabled'}>
+            <summary id="accordion${idx + 1}" class="${idx < 1 ? 'icon-circle-down' : 'icon-circle-up'}">
                 ${section.title.value}
                 </summary>
             <div class="panel">
